@@ -1,0 +1,23 @@
+[user]
+	useConfigOnly = true
+[push]
+	default = current
+[core]
+	editor = vim
+[branch]
+	autosetuprebase = always
+[rebase]
+	autosquash = true
+[merge]
+	tool = kdiff3
+[status]
+	submodulesummary = true
+[gc]
+	worktreePruneExpire = now
+[fetch]
+	prune = true
+
+# core.excludesfile should be set in .gitconfig_local
+# mergetool.kdiff3.path should be set in .gitconfig_local
+[include]
+  path = ~/.gitconfig_local

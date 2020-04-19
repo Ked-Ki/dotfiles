@@ -1,0 +1,6 @@
+[submodule ".vim"]
+	path = .vim
+	url = git@personal_github:Ked-Ki/vim-config.git
+[submodule ".oh-my-zsh"]
+	path = .oh-my-zsh
+	url = git@personal_github:Ked-Ki/oh-my-zsh.git
