@@ -55,3 +55,6 @@ results/*
 
 # dotfiles
 .cfg
+
+#intellij run configs
+.run
