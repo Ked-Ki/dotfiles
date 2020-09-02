@@ -25,19 +25,25 @@ HYPHEN_INSENSITIVE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git colored-man-pages jira python vi-mode)
-
-# Plugin configuration
-
-# Jira
-export JIRA_DEFAULT_ACTION=dashboard
+plugins=(git colored-man-pages python vi-mode)
 
 # User configuration
 
-script_dir=$HOME/bin
-[[ ":$PATH:" =~ ":$script_dir:" ]] ||
-    export PATH="$script_dir:$PATH"
+path_array=(
+  # local bin folders
+  "$HOME/bin" "$HOME/.local/bin"
+  # yarn (package manager for nodejs)
+  "$HOME/.yarn/bin" "$HOME/.config/yarn/global/node_modules/.bin"
+  # cargo (package manager for rust)
+  "$HOME/.cargo/bin"
+)
+for dir in $path_array;
+do
+  [[ ":$PATH:" =~ ":$dir:" ]] || PATH="$dir:$PATH"
+done
+export PATH
 
+# pyenv: manager for multiple concurrent python versions
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
@@ -46,6 +52,15 @@ if command -v pyenv-virtualenv 1>/dev/null 2>&1; then
   eval "$(pyenv virtualenv-init -)"
 fi
 
+# nvm: manager for nodejs versions
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# java home, currently a specific version for work stuff
+export JAVA_HOME=$([ -s /usr/libexec/java_home ] && /usr/libexec/java_home -v 1.8)
+
+# make less prettier. uses gnu source-highlight
 export LESSOPEN="| /usr/local/bin/src-hilite-lesspipe.sh %s"
 export LESS=" -R "
 
@@ -56,8 +71,3 @@ export PKG_CONFIG_PATH="/usr/local/opt/openssl/lib/pkgconfig"
 
 . $ZSH/oh-my-zsh.sh
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-export JAVA_HOME=$([ -s /usr/libexec/java_home ] && /usr/libexec/java_home -v 1.8)
