@@ -60,6 +60,9 @@ export NVM_DIR="$HOME/.nvm"
 # java home, currently a specific version for work stuff
 export JAVA_HOME=$([ -s /usr/libexec/java_home ] && /usr/libexec/java_home -v 1.8)
 
+# added by Nix installer
+if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc/profile.d/nix.sh; fi 
+
 # make less prettier. uses gnu source-highlight
 export LESSOPEN="| /usr/local/bin/src-hilite-lesspipe.sh %s"
 export LESS=" -R "
@@ -70,4 +73,3 @@ export CPPFLAGS="-I/usr/local/opt/openssl/include"
 export PKG_CONFIG_PATH="/usr/local/opt/openssl/lib/pkgconfig"
 
 . $ZSH/oh-my-zsh.sh
-
