@@ -48,6 +48,8 @@ org.sonarlint.eclipse.core.prefs
 org.eclipse.jdt.core.prefs
 
 # pyenv venv
+*/.python-version
+*.python-version
 .python-version
 
 # jcstress results

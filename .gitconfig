@@ -17,7 +17,10 @@
 [fetch]
 	prune = true
 
-# core.excludesfile should be set in .gitconfig_local
+# core.excludesFile should be set in .gitconfig_local
 # mergetool.kdiff3.path should be set in .gitconfig_local
 [include]
-  path = ~/.gitconfig_local
+  path = "/Users/kmfreese/.gitconfig_local"
+[filesystem "AdoptOpenJDK|1.8.0_265|/dev/disk1s1"]
+	timestampResolution = 1001 milliseconds
+	minRacyThreshold = 0 nanoseconds

@@ -29,6 +29,9 @@ plugins=(git colored-man-pages python vi-mode)
 
 # User configuration
 
+# golang
+GOPATH="$HOME/.go/"
+
 path_array=(
   # local bin folders
   "$HOME/bin" "$HOME/.local/bin"
@@ -36,6 +39,9 @@ path_array=(
   "$HOME/.yarn/bin" "$HOME/.config/yarn/global/node_modules/.bin"
   # cargo (package manager for rust)
   "$HOME/.cargo/bin"
+  "$GOPATH/bin"
+  # jenv: manager for multiple java versions
+  "$HOME/.jenv/bin"
 )
 for dir in $path_array;
 do
@@ -57,15 +63,15 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# java home, currently a specific version for work stuff
-export JAVA_HOME=$([ -s /usr/libexec/java_home ] && /usr/libexec/java_home -v 1.8)
+# jenv: manager for multiple java versions
+if command -v jenv 1>/dev/null 2>&1; then
+  eval "$(jenv init -)"
+fi
 
 # added by Nix installer
 if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc/profile.d/nix.sh; fi 
 
-# make less prettier. uses gnu source-highlight
-export LESSOPEN="| /usr/local/bin/src-hilite-lesspipe.sh %s"
-export LESS=" -R "
+export JQ_COLORS="1;33:0;37:0;37:0;37:0;32:1;37:1;37"
 
 # openssl compile flags
 export LDFLAGS="-L/usr/local/opt/openssl/lib"
